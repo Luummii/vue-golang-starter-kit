@@ -2,23 +2,21 @@ package db
 
 import (
 	"database/sql"
+	"vue-golang-starter-kit/backend/types"
 
 	"github.com/labstack/gommon/log"
 	// postgres drivers
 	_ "github.com/lib/pq"
 )
 
-type user struct {
-	First    string
-	Last     string
-	Password string
-	Email    string
+// DataBase for using DataBase
+type DataBase struct {
 }
 
 var db *sql.DB
 
-// Connect - DataBase connect
-func Connect(database, user, url, password string) *sql.DB {
+// Connect - соединение с БД
+func Connect(database, user, url, password string) *DataBase {
 	dsn := "postgres://" + user + ":" + password + "@" + url + ":5432/" + database
 
 	db, err := sql.Open("postgres", dsn)
@@ -31,15 +29,12 @@ func Connect(database, user, url, password string) *sql.DB {
 		panic(err)
 	}
 
-	addUser()
-
-	return db
+	return &DataBase{}
 }
 
-// AddUser - function add user in db
-func addUser() {
+// AddUser - Добавляем юзера в БД
+func (*DataBase) AddUser(u types.User) {
 	query := `INSERT INTO users (first, last, password, email) VALUES ($1, $2, $3, $4)`
-	defer db.Close()
 
 	stmt, err := db.Prepare(query)
 	if err != nil {
@@ -47,7 +42,6 @@ func addUser() {
 	}
 	defer stmt.Close()
 
-	u := user{"Andrey", "Zimin", "qwert", "asd@asd.asd"}
 	r, err := stmt.Exec(u.First, u.Last, u.Password, u.Email)
 	if err != nil {
 		panic(err)

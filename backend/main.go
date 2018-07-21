@@ -16,7 +16,7 @@ var url string
 var password string
 
 func init() {
-	// for example start with flag :--> go run main.go -port=8080
+	// для примера, можно запускать сервер с консоли с флагом:--> go run main.go -port=8080
 	flag.StringVar(&port, "port", "5000", "Assigning the port that the server should listen on")
 	flag.Parse()
 
@@ -47,6 +47,8 @@ func init() {
 
 func main() {
 	db := db.Connect(database, user, url, password)
+
 	s := server.Create(port, db)
+	s.CreateRoutes()
 	s.Listen()
 }

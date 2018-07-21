@@ -1,26 +1,39 @@
 package server
 
 import (
+	"vue-golang-starter-kit/backend/db"
+	"vue-golang-starter-kit/backend/routes"
+
 	"github.com/labstack/echo"
 )
 
-// Server - a new server struct
+// Server - структура сервера
 type Server struct {
-	Port   string
-	Server *echo.Echo
+	Port string
+	DB   *db.DataBase
+	Echo *echo.Echo
 }
 
-// SInterface interface
+// SInterface специально умный интерфейс
 type SInterface interface {
 	Listen()
+	CreateRoutes()
 }
 
-// Create - function creating a new server
-func Create(port string) SInterface {
-	return &Server{":" + port, echo.New()}
+// Create - создаем новый сервер
+func Create(port string, db *db.DataBase) SInterface {
+	return &Server{":" + port, db, echo.New()}
 }
 
-// Listen - function listeninig server in port
-func (s *Server) Listen() {
-	s.Server.Logger.Fatal(s.Server.Start(":5000"))
+// Listen - запускаем слушание на порту
+func (srv *Server) Listen() {
+	srv.Echo.Logger.Fatal(srv.Echo.Start(srv.Port))
+}
+
+// CreateRoutes - функция создания всех роутов и мидлов
+func (srv *Server) CreateRoutes() {
+	//usersGroup := srv.Echo.Group("/users")
+
+	routes.Home(srv.Echo)
+	//routes.Users(usersGroup)
 }
