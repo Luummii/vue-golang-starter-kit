@@ -18,20 +18,20 @@ type CRV struct {
 	DataBase     db.DataBase
 }
 
-// SInterface bla bla bla
+// SInterface бла бла бла
 type SInterface interface {
 	CreateRoutes()
 	Run()
 }
 
-// Create - создаем новый сервер
+// Create - бла бла бла
 func Create(port, dbName, url, user, password string) (SInterface, error) {
 	e := echo.New()
 	db := db.DataBase{}
 	return &CRV{Port: ":" + port, DataBaseName: dbName, URL: url, User: user, Password: password, Echo: e, DataBase: db}, nil
 }
 
-// CreateRoutes - функция создания всех роутов и мидлов
+// CreateRoutes - бла бла бла
 func (srv *CRV) CreateRoutes() {
 	usersGroup := srv.Echo.Group("/users")
 
@@ -43,10 +43,9 @@ func (srv *CRV) CreateRoutes() {
 
 	srv.Echo.Static("/", "frontend/dist")
 	usersGroup.POST("/add", handlers.AddUsers)
-	usersGroup.GET("/get", handlers.GetUsers)
 }
 
-// Run - функция создания всех роутов и мидлов
+// Run - бла бла бла
 func (srv *CRV) Run() {
 	srv.Echo.Logger.Fatal(srv.Echo.Start(srv.Port))
 }

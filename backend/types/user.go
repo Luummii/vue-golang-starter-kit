@@ -1,6 +1,6 @@
 package types
 
-// User тип для примера
+// User бла бла бла
 type User struct {
 	First    string
 	Last     string

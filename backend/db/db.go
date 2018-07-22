@@ -9,16 +9,16 @@ import (
 	_ "github.com/lib/pq"
 )
 
-// DataBase for using DataBase
+// DataBase бла бла бла
 type DataBase struct {
 }
 
-// Store for using DataBase
+// Store бла бла бла
 type Store struct {
 	DB *sql.DB
 }
 
-// Connect - соединение с БД
+// Connect - бла бла бла
 func (*DataBase) Connect(database, user, url, password string) (*Store, error) {
 	dsn := "postgres://" + user + ":" + password + "@" + url + ":5432/" + database
 
@@ -35,7 +35,7 @@ func (*DataBase) Connect(database, user, url, password string) (*Store, error) {
 	return &Store{DB: db}, nil
 }
 
-// Add - Добавляем юзера в БД
+// Add - бла бла бла
 func (s *Store) Add(u types.User) {
 	query := `INSERT INTO users (first, last, password, email) VALUES ($1, $2, $3, $4)`
 
