@@ -3,14 +3,13 @@ package main
 import (
 	"flag"
 	"os"
-	"vue-golang-starter-kit/backend/db"
 	"vue-golang-starter-kit/backend/server"
 
 	"github.com/joho/godotenv"
 )
 
 var port string
-var database string
+var dbName string
 var user string
 var url string
 var password string
@@ -28,8 +27,8 @@ func init() {
 		port = _port
 	}
 
-	if _database := os.Getenv("DATABASE"); len(_database) > 0 {
-		database = _database
+	if _dbName := os.Getenv("DATABASENAME"); len(_dbName) > 0 {
+		dbName = _dbName
 	}
 
 	if _user := os.Getenv("USER"); len(_user) > 0 {
@@ -46,9 +45,11 @@ func init() {
 }
 
 func main() {
-	db := db.Connect(database, user, url, password)
+	s, err := server.Create(port, dbName, url, user, password)
+	if err != nil {
+		panic(err)
+	}
 
-	s := server.Create(port, db)
 	s.CreateRoutes()
-	s.Listen()
+	s.Run()
 }

@@ -13,10 +13,13 @@ import (
 type DataBase struct {
 }
 
-var db *sql.DB
+// Store for using DataBase
+type Store struct {
+	DB *sql.DB
+}
 
 // Connect - соединение с БД
-func Connect(database, user, url, password string) *DataBase {
+func (*DataBase) Connect(database, user, url, password string) (*Store, error) {
 	dsn := "postgres://" + user + ":" + password + "@" + url + ":5432/" + database
 
 	db, err := sql.Open("postgres", dsn)
@@ -29,14 +32,14 @@ func Connect(database, user, url, password string) *DataBase {
 		panic(err)
 	}
 
-	return &DataBase{}
+	return &Store{DB: db}, nil
 }
 
-// AddUser - Добавляем юзера в БД
-func (*DataBase) AddUser(u types.User) {
+// Add - Добавляем юзера в БД
+func (s *Store) Add(u types.User) {
 	query := `INSERT INTO users (first, last, password, email) VALUES ($1, $2, $3, $4)`
 
-	stmt, err := db.Prepare(query)
+	stmt, err := s.DB.Prepare(query)
 	if err != nil {
 		panic(err)
 	}
