@@ -1,8 +1,8 @@
 package server
 
 import (
-	"vue-golang-starter-kit/backend/db"
-	"vue-golang-starter-kit/backend/handlers"
+	"projects/vue-golang-starter-kit/backend/db"
+	"projects/vue-golang-starter-kit/backend/handlers"
 
 	"github.com/labstack/echo"
 )

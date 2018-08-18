@@ -3,7 +3,7 @@ package main
 import (
 	"flag"
 	"os"
-	"vue-golang-starter-kit/backend/server"
+	"projects/vue-golang-starter-kit/backend/server"
 
 	"github.com/joho/godotenv"
 )

@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
-	"vue-golang-starter-kit/backend/db"
-	"vue-golang-starter-kit/backend/types"
+	"projects/vue-golang-starter-kit/backend/db"
+	"projects/vue-golang-starter-kit/backend/types"
 
 	"github.com/labstack/echo"
 )

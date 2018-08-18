@@ -2,7 +2,7 @@ package db
 
 import (
 	"database/sql"
-	"vue-golang-starter-kit/backend/types"
+	"projects/vue-golang-starter-kit/backend/types"
 
 	"github.com/labstack/gommon/log"
 	// postgres drivers
@@ -20,7 +20,7 @@ type Store struct {
 
 // Connect - бла бла бла
 func (*DataBase) Connect(database, user, url, password string) (*Store, error) {
-	dsn := "postgres://" + user + ":" + password + "@" + url + ":5432/" + database
+	dsn := "postgres://" + user + ":" + password + "@" + url + ":5432/" + database	
 
 	db, err := sql.Open("postgres", dsn)
 	if err != nil {
