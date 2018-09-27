@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"log"
 	"os"
 	"projects/vue-golang-starter-kit/backend/server"
 
@@ -9,13 +10,12 @@ import (
 )
 
 var port string
-var dbName string
+var dataBasebName string
 var user string
 var url string
 var password string
 
 func init() {
-	// для примера, можно запускать сервер с консоли с флагом:--> go run main.go -port=8080
 	flag.StringVar(&port, "port", "5000", "Assigning the port that the server should listen on")
 	flag.Parse()
 
@@ -28,7 +28,7 @@ func init() {
 	}
 
 	if _dbName := os.Getenv("DATABASENAME"); len(_dbName) > 0 {
-		dbName = _dbName
+		dataBasebName = _dbName
 	}
 
 	if _user := os.Getenv("USER"); len(_user) > 0 {
@@ -45,11 +45,11 @@ func init() {
 }
 
 func main() {
-	s, err := server.Create(port, dbName, url, user, password)
+	s, err := server.Create(port, dataBasebName, url, user, password)
 	if err != nil {
+		log.Printf("MAIN:-->::main::ERROR::NO CREATE SERVER: %s\n", err)
 		panic(err)
 	}
-
-	s.CreateRoutes()
+	s.Routes()
 	s.Run()
 }
