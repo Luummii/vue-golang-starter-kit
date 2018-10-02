@@ -1,23 +1,24 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
+  <div id="app"> 
     <router-view/>
   </div>
 </template>
 
 <script>
+const inBrowser = typeof window !== 'undefined'
+if (inBrowser) {
+  var semantic = require('../semantic/dist/semantic.js')
+}
+
 export default {
-  name: 'App'
+  name: 'App',
+  data () {
+    return {
+    }
+  }
 }
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang="scss">
+
 </style>

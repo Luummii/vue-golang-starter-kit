@@ -2,15 +2,15 @@ package main
 
 import (
 	"flag"
-	"log"
 	"os"
-	"projects/vue-golang-starter-kit/backend/server"
 
 	"github.com/joho/godotenv"
+	"projects/unrealengine.help/backend/server"
 )
 
 var port string
 var dataBasebName string
+var localHost string
 var user string
 var url string
 var password string
@@ -42,14 +42,17 @@ func init() {
 	if _password := os.Getenv("PASSWORD"); len(_password) > 0 {
 		password = _password
 	}
+
+	if _localHost := os.Getenv("LOCALHOST"); len(_localHost) > 0 {
+		localHost = _localHost
+	}
 }
 
 func main() {
-	s, err := server.Create(port, dataBasebName, url, user, password)
+	srv, err := server.Create(port, dataBasebName, url, user, password, localHost)
 	if err != nil {
-		log.Printf("MAIN:-->::main::ERROR::NO CREATE SERVER: %s\n", err)
 		panic(err)
 	}
-	s.Routes()
-	s.Run()
+	srv.Routes()
+	srv.Run()
 }

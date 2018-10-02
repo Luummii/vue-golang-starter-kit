@@ -1,8 +1,8 @@
 {
-  "name": "frontend",
+  "name": "unrealengine.help",
   "version": "1.0.0",
-  "description": "vue-golang-starter-kit - the template for fast start your app.",
-  "author": "Andrey Zimin (Luummii) <zimin6077@gmail.com>",
+  "description": "A Vue.js project",
+  "author": "Andrey Zimin <Luummii> mail@luummii.com",
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
@@ -11,6 +11,10 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "jquery": "^3.3.1",
+    "node-sass": "^4.9.3",
+    "sass-loader": "^7.1.0",
+    "semantic-ui": "^2.4.0",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"
   },
