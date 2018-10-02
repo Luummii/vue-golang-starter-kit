@@ -1,5 +1,5 @@
 <template>
-  <div class="ueh-page-no-found">
+  <div class="gsk-page-no-found">
     <p>PageNoFound</p>
   </div>
 </template>
@@ -7,7 +7,7 @@
 <script>
 
 export default {
-  name: 'ueh-page-no-found',
+  name: 'gsk-page-no-found',
   data () {
     return {
     }
